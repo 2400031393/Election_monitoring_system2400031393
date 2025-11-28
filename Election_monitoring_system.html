@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <title>Election Monitoring System</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    }
+
+
+
+    body {
+
+      background: #f3f4f6;
+
+      color: #111827;
+
+      min-height: 100vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+
+    header {
+
+      background: #111827;
+
+      color: #f9fafb;
+
+      padding: 1rem 2rem;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 1rem;
+
+    }
+
+
+
+    header h1 {
+
+      font-size: 1.4rem;
+
+      font-weight: 600;
+
+    }
+
+
+
+    header span {
+
+      font-size: 0.9rem;
+
+      opacity: 0.8;
+
+    }
+
+
+
+    main {
+
+      display: grid;
+
+      grid-template-columns: 260px 1fr;
+
+      flex: 1;
+
+      min-height: 0;
+
+    }
+
+
+
+    aside {
+
+      background: #1f2937;
+
+      color: #e5e7eb;
+
+      padding: 1.2rem;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 1.2rem;
+
+    }
+
+
+
+    .brand {
+
+      font-weight: 600;
+
+      margin-bottom: 0.3rem;
+
+    }
+
+
+
+    label {
+
+      font-size: 0.85rem;
+
+      margin-bottom: 0.25rem;
+
+      display: block;
+
+    }
+
+
+
+    select, input, textarea {
+
+      width: 100%;
+
+      padding: 0.5rem 0.6rem;
+
+      border-radius: 0.5rem;
+
+      border: 1px solid #d1d5db;
+
+      font-size: 0.9rem;
+
+      outline: none;
+
+    }
+
+
+
+    select:focus, input:focus, textarea:focus {
+
+      border-color: #2563eb;
+
+      box-shadow: 0 0 0 1px #2563eb20;
+
+    }
+
+
+
+    .side-section {
+
+      background: #111827;
+
+      border-radius: 0.75rem;
+
+      padding: 0.8rem;
+
+      border: 1px solid #374151;
+
+    }
+
+
+
+    .side-section h3 {
+
+      font-size: 0.9rem;
+
+      margin-bottom: 0.4rem;
+
+    }
+
+
+
+    .side-section p, .side-section ul {
+
+      font-size: 0.8rem;
+
+      color: #9ca3af;
+
+      line-height: 1.4;
+
+    }
+
+
+
+    .side-section ul {
+
+      padding-left: 1rem;
+
+      margin-top: 0.3rem;
+
+    }
+
+
+
+    .tag {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      padding: 0.3rem 0.6rem;
+
+      border-radius: 999px;
+
+      font-size: 0.75rem;
+
+      background: #2563eb1a;
+
+      color: #bfdbfe;
+
+      margin-right: 0.3rem;
+
+      margin-bottom: 0.3rem;
+
+    }
+
+
+
+    .tag span {
+
+      font-size: 0.85rem;
+
+      margin-right: 0.25rem;
+
+    }
+
+
+
+    section.content {
+
+      padding: 1.5rem 2rem;
+
+      overflow-y: auto;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 1.2rem;
+
+    }
+
+
+
+    .role-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 1rem;
+
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .role-header h2 {
+
+      font-size: 1.3rem;
+
+      margin-bottom: 0.3rem;
+
+    }
+
+
+
+    .role-header p {
+
+      font-size: 0.9rem;
+
+      color: #4b5563;
+
+      max-width: 460px;
+
+    }
+
+
+
+    .pill {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      padding: 0.3rem 0.7rem;
+
+      border-radius: 999px;
+
+      background: #e5e7eb;
+
+      font-size: 0.8rem;
+
+      gap: 0.35rem;
+
+    }
+
+
+
+    .pill-dot {
+
+      width: 7px;
+
+      height: 7px;
+
+      border-radius: 999px;
+
+      background: #22c55e;
+
+    }
+
+
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns: 2fr 1.4fr;
+
+      gap: 1rem;
+
+    }
+
+
+
+    .card {
+
+      background: #ffffff;
+
+      border-radius: 0.9rem;
+
+      padding: 1rem;
+
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+
+      border: 1px solid #e5e7eb;
+
+    }
+
+
+
+    .card h3 {
+
+      font-size: 1rem;
+
+      margin-bottom: 0.6rem;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+    }
+
+
+
+    .card h3 span {
+
+      font-size: 0.8rem;
+
+      color: #6b7280;
+
+      font-weight: 400;
+
+    }
+
+
+
+    .stats {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      gap: 0.7rem;
+
+      margin-top: 0.5rem;
+
+    }
+
+
+
+    .stat {
+
+      border-radius: 0.75rem;
+
+      padding: 0.7rem;
+
+      background: #eff6ff;
+
+      border: 1px solid #dbeafe;
+
+      font-size: 0.8rem;
+
+    }
+
+
+
+    .stat strong {
+
+      display: block;
+
+      font-size: 1rem;
+
+      margin-bottom: 0.15rem;
+
+      color: #1d4ed8;
+
+    }
+
+
+
+    .stat span {
+
+      font-size: 0.75rem;
+
+      color: #4b5563;
+
+    }
+
+
+
+    form {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.6rem;
+
+      margin-top: 0.3rem;
+
+    }
+
+
+
+    textarea {
+
+      resize: vertical;
+
+      min-height: 70px;
+
+      max-height: 150px;
+
+    }
+
+
+
+    .row {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 0.6rem;
+
+    }
+
+
+
+    button {
+
+      border: none;
+
+      border-radius: 0.7rem;
+
+      padding: 0.55rem 0.9rem;
+
+      font-size: 0.9rem;
+
+      font-weight: 500;
+
+      cursor: pointer;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 0.35rem;
+
+    }
+
+
+
+    .btn-primary {
+
+      background: #2563eb;
+
+      color: #f9fafb;
+
+    }
+
+
+
+    .btn-primary:hover {
+
+      background: #1d4ed8;
+
+    }
+
+
+
+    .btn-ghost {
+
+      background: #f3f4f6;
+
+      color: #374151;
+
+    }
+
+
+
+    .btn-ghost:hover {
+
+      background: #e5e7eb;
+
+    }
+
+
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      font-size: 0.8rem;
+
+      margin-top: 0.5rem;
+
+    }
+
+
+
+    th, td {
+
+      padding: 0.45rem 0.5rem;
+
+      border-bottom: 1px solid #e5e7eb;
+
+      text-align: left;
+
+      vertical-align: top;
+
+    }
+
+
+
+    th {
+
+      font-weight: 600;
+
+      font-size: 0.78rem;
+
+      color: #6b7280;
+
+      background: #f9fafb;
+
+    }
+
+
+
+    tbody tr:hover {
+
+      background: #f9fafb;
+
+    }
+
+
+
+    .status-chip {
+
+      padding: 0.2rem 0.55rem;
+
+      border-radius: 999px;
+
+      font-size: 0.7rem;
+
+      display: inline-block;
+
+    }
+
+
+
+    .status-open {
+
+      background: #fef3c7;
+
+      color: #92400e;
+
+    }
+
+
+
+    .status-review {
+
+      background: #e0f2fe;
+
+      color: #075985;
+
+    }
+
+
+
+    .status-resolved {
+
+      background: #dcfce7;
+
+      color: #166534;
+
+    }
+
+
+
+    .timeline {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.6rem;
+
+      margin-top: 0.4rem;
+
+      font-size: 0.8rem;
+
+    }
+
+
+
+    .timeline-step {
+
+      display: flex;
+
+      gap: 0.5rem;
+
+      align-items: flex-start;
+
+    }
+
+
+
+    .timeline-badge {
+
+      width: 16px;
+
+      height: 16px;
+
+      border-radius: 999px;
+
+      border: 2px solid #2563eb;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 0.6rem;
+
+      flex-shrink: 0;
+
+      background: #eff6ff;
+
+    }
+
+
+
+    .timeline-content {
+
+      flex: 1;
+
+    }
+
+
+
+    .timeline-content strong {
+
+      display: block;
+
+      margin-bottom: 0.1rem;
+
+    }
+
+
+
+    .timeline-content span {
+
+      color: #6b7280;
+
+      font-size: 0.76rem;
+
+    }
+
+
+
+    .discussion-list {
+
+      margin-top: 0.5rem;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.6rem;
+
+      font-size: 0.82rem;
+
+      max-height: 200px;
+
+      overflow-y: auto;
+
+    }
+
+
+
+    .discussion-item {
+
+      padding: 0.5rem 0.65rem;
+
+      border-radius: 0.7rem;
+
+      background: #f9fafb;
+
+      border: 1px solid #e5e7eb;
+
+    }
+
+
+
+    .discussion-item strong {
+
+      font-size: 0.78rem;
+
+    }
+
+
+
+    .discussion-item span {
+
+      font-size: 0.7rem;
+
+      color: #6b7280;
+
+      margin-left: 0.3rem;
+
+    }
+
+
+
+    .discussion-item p {
+
+      margin-top: 0.2rem;
+
+      line-height: 1.3;
+
+    }
+
+
+
+    .muted {
+
+      font-size: 0.78rem;
+
+      color: #6b7280;
+
+    }
+
+
+
+    .flash {
+
+      font-size: 0.8rem;
+
+      margin-top: 0.3rem;
+
+      color: #16a34a;
+
+      display: none;
+
+    }
+
+
+
+    @media (max-width: 900px) {
+
+      main {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+
+      aside {
+
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+      }
+
+
+
+      .side-section {
+
+        flex: 1 1 200px;
+
+      }
+
+
+
+      section.content {
+
+        padding: 1rem;
+
+      }
+
+
+
+      .grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <div>
+
+      <h1>Election Monitoring System</h1>
+
+      <span>Fair • Transparent • Citizen-Centric</span>
+
+    </div>
+
+    <div class="pill">
+
+      <span class="pill-dot"></span>
+
+      Live Demo (Prototype UI)
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- LEFT SIDEBAR -->
+
+    <aside>
+
+      <div>
+
+        <div class="brand">Role Selector</div>
+
+        <label for="roleSelect">View dashboard as:</label>
+
+        <select id="roleSelect">
+
+          <option value="Admin">Admin</option>
+
+          <option value="Citizen">Citizen</option>
+
+          <option value="Election Observer">Election Observer</option>
+
+          <option value="Data Analyst">Data Analyst</option>
+
+        </select>
+
+      </div>
+
+
+
+      <div class="side-section">
+
+        <h3>Platform Goals</h3>
+
+        <p>Monitor elections, prevent fraud, and build trust among new voters.</p>
+
+        <ul>
+
+          <li>Real-time issue reporting</li>
+
+          <li>Transparent process tracking</li>
+
+          <li>Data-driven insights</li>
+
+          <li>Civic engagement & discussions</li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div class="side-section">
+
+        <h3>Core Features</h3>
+
+        <div>
+
+          <span class="tag"><span>●</span>Fraud Alerts</span>
+
+          <span class="tag"><span>●</span>Booth Status</span>
+
+          <span class="tag"><span>●</span>Issue Heatmap</span>
+
+          <span class="tag"><span>●</span>Citizen Forum</span>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <section class="content">
+
+      <div class="role-header">
+
+        <div>
+
+          <h2 id="roleTitle">Admin Dashboard</h2>
+
+          <p id="roleDescription">
+
+            Manage the platform, verify reports, and ensure that the election monitoring
+
+            system remains secure, reliable, and transparent for all stakeholders.
+
+          </p>
+
+        </div>
+
+        <div>
+
+          <p class="muted">
+
+            This is a prototype web UI for your project.  
+
+            You can show it in your viva/demo and later connect it to a backend.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="grid">
+
+        <!-- LEFT COLUMN: Reports + Form -->
+
+        <div class="card">
+
+          <h3>
+
+            Issue Reporting & Monitoring
+
+            <span>Fraud prevention • Process tracking</span>
+
+          </h3>
+
+
+
+          <!-- Quick Stats -->
+
+          <div class="stats">
+
+            <div class="stat">
+
+              <strong id="statTotal">0</strong>
+
+              <span>Total Reports</span>
+
+            </div>
+
+            <div class="stat">
+
+              <strong id="statOpen">0</strong>
+
+              <span>Open / New</span>
+
+            </div>
+
+            <div class="stat">
+
+              <strong id="statResolved">0</strong>
+
+              <span>Resolved</span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Report Form -->
+
+          <form id="reportForm">
+
+            <div class="row">
+
+              <div>
+
+                <label for="reporterName">Name (optional)</label>
+
+                <input id="reporterName" type="text" placeholder="Your name or leave blank" />
+
+              </div>
+
+              <div>
+
+                <label for="reporterRole">You are a</label>
+
+                <select id="reporterRole">
+
+                  <option value="Citizen">Citizen</option>
+
+                  <option value="Election Observer">Election Observer</option>
+
+                  <option value="Admin">Admin</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <div>
+
+                <label for="location">Location / Booth</label>
+
+                <input id="location" type="text" placeholder="Ward 12, Booth 34" required />
+
+              </div>
+
+              <div>
+
+                <label for="category">Issue Category</label>
+
+                <select id="category">
+
+                  <option value="Suspicious Activity">Suspicious Activity</option>
+
+                  <option value="Vote Buying">Vote Buying</option>
+
+                  <option value="Violence / Intimidation">Violence / Intimidation</option>
+
+                  <option value="Technical Issue (EVM/VVPAT)">Technical Issue (EVM/VVPAT)</option>
+
+                  <option value="Queue / Management Issue">Queue / Management Issue</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+
+            <div>
+
+              <label for="description">Issue Description</label>
+
+              <textarea id="description" placeholder="Describe what you observed… (time, people involved, evidence, etc.)" required></textarea>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <div>
+
+                <label for="evidenceLink">Evidence (optional)</label>
+
+                <input id="evidenceLink" type="text" placeholder="Image / video link, if any" />
+
+              </div>
+
+              <div>
+
+                <label for="reportUrgency">Urgency</label>
+
+                <select id="reportUrgency">
+
+                  <option value="Normal">Normal</option>
+
+                  <option value="High">High</option>
+
+                  <option value="Critical">Critical</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+
+            <div style="display:flex; gap:0.5rem; margin-top:0.2rem;">
+
+              <button type="submit" class="btn-primary">
+
+                Submit Report
+
+              </button>
+
+              <button type="button" class="btn-ghost" id="clearFormBtn">
+
+                Clear
+
+              </button>
+
+            </div>
+
+            <div id="flashMessage" class="flash">Report submitted successfully!</div>
+
+          </form>
+
+
+
+          <!-- Reports Table -->
+
+          <h3 style="margin-top:1rem;">
+
+            Recent Reports
+
+            <span>Filtered by selected role</span>
+
+          </h3>
+
+          <div style="overflow-x:auto;">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>#</th>
+
+                  <th>Role</th>
+
+                  <th>Location</th>
+
+                  <th>Category</th>
+
+                  <th>Status</th>
+
+                  <th>Time</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody id="reportsBody">
+
+                <!-- Filled by JS -->
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- RIGHT COLUMN: Timeline + Discussion -->
+
+        <div class="card">
+
+          <h3>
+
+            Election Process & Civic Engagement
+
+            <span>Helps new voters understand the system</span>
+
+          </h3>
+
+
+
+          <!-- Process Timeline -->
+
+          <div class="timeline">
+
+            <div class="timeline-step">
+
+              <div class="timeline-badge">1</div>
+
+              <div class="timeline-content">
+
+                <strong>Pre-poll Preparation</strong>
+
+                <span>Voter lists are published, polling staff are trained, and EVMs/VVPATs are tested in public.</span>
+
+              </div>
+
+            </div>
+
+            <div class="timeline-step">
+
+              <div class="timeline-badge">2</div>
+
+              <div class="timeline-content">
+
+                <strong>Polling Day Monitoring</strong>
+
+                <span>Booth-level updates, issue alerts, and observer notes tracked in real time through this platform.</span>
+
+              </div>
+
+            </div>
+
+            <div class="timeline-step">
+
+              <div class="timeline-badge">3</div>
+
+              <div class="timeline-content">
+
+                <strong>Counting & Results</strong>
+
+                <span>Counting trends, anomalies, and official announcements are monitored and analysed.</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Discussion Section -->
+
+          <div style="margin-top:1.1rem;">
+
+            <h3>
+
+              Civic Discussion Feed
+
+              <span>Ask questions • Share experiences</span>
+
+            </h3>
+
+
+
+            <div class="discussion-list" id="discussionList">
+
+              <!-- Filled by JS -->
+
+            </div>
+
+
+
+            <form id="discussionForm" style="margin-top:0.7rem;">
+
+              <label for="discussionText">Start a discussion or ask a question</label>
+
+              <textarea id="discussionText" placeholder="Example: How can first-time voters verify their names on the voter list?" required></textarea>
+
+              <button type="submit" class="btn-primary">Post</button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const roleSelect = document.getElementById("roleSelect");
+
+      const roleTitle = document.getElementById("roleTitle");
+
+      const roleDescription = document.getElementById("roleDescription");
+
+
+
+      const reportsBody = document.getElementById("reportsBody");
+
+      const statTotal = document.getElementById("statTotal");
+
+      const statOpen = document.getElementById("statOpen");
+
+      const statResolved = document.getElementById("statResolved");
+
+
+
+      const reportForm = document.getElementById("reportForm");
+
+      const clearFormBtn = document.getElementById("clearFormBtn");
+
+      const flashMessage = document.getElementById("flashMessage");
+
+
+
+      const discussionList = document.getElementById("discussionList");
+
+      const discussionForm = document.getElementById("discussionForm");
+
+      const discussionText = document.getElementById("discussionText");
+
+
+
+      const roleInfo = {
+
+        "Admin": {
+
+          title: "Admin Dashboard",
+
+          description:
+
+            "Manage the system, verify incoming reports, and coordinate with officials to ensure that the platform stays secure and that serious issues are escalated quickly."
+
+        },
+
+        "Citizen": {
+
+          title: "Citizen View",
+
+          description:
+
+            "Track polling status in your area, report suspicious activities, and participate in civic discussions that help other upcoming voters stay informed."
+
+        },
+
+        "Election Observer": {
+
+          title: "Election Observer Tools",
+
+          description:
+
+            "Monitor polling booths, document anomalies, upload structured reports, and contribute to an independent assessment of the election’s fairness."
+
+        },
+
+        "Data Analyst": {
+
+          title: "Data Analyst Insights",
+
+          description:
+
+            "Analyse patterns in issue reports, voter turnout, and process delays to generate real-time insights and fairness indicators for the election."
+
+        }
+
+      };
+
+
+
+      // Sample initial reports for demo
+
+      let reports = [
+
+        {
+
+          id: 1,
+
+          role: "Citizen",
+
+          location: "Ward 12, Booth 34",
+
+          category: "Queue / Management Issue",
+
+          status: "Open",
+
+          time: "08:45",
+
+          urgency: "Normal"
+
+        },
+
+        {
+
+          id: 2,
+
+          role: "Election Observer",
+
+          location: "Ward 05, Booth 10",
+
+          category: "Technical Issue (EVM/VVPAT)",
+
+          status: "Under Review",
+
+          time: "09:10",
+
+          urgency: "High"
+
+        },
+
+        {
+
+          id: 3,
+
+          role: "Citizen",
+
+          location: "Ward 03, Booth 02",
+
+          category: "Suspicious Activity",
+
+          status: "Resolved",
+
+          time: "09:30",
+
+          urgency: "Critical"
+
+        }
+
+      ];
+
+
+
+      // Sample initial discussions
+
+      let discussions = [
+
+        {
+
+          author: "First-time Voter",
+
+          time: "Today • 09:00",
+
+          text: "How do I know which booth I should go to for voting?"
+
+        },
+
+        {
+
+          author: "Election Official",
+
+          time: "Today • 09:05",
+
+          text: "You can check your polling booth on the official voter portal using your EPIC number or phone number."
+
+        },
+
+        {
+
+          author: "Student Volunteer",
+
+          time: "Today • 09:20",
+
+          text: "If you see any suspicious activity near your booth, report it here immediately with time and location details."
+
+        }
+
+      ];
+
+
+
+      function updateRoleUI() {
+
+        const selectedRole = roleSelect.value;
+
+        const info = roleInfo[selectedRole];
+
+        roleTitle.textContent = info.title;
+
+        roleDescription.textContent = info.description;
+
+        renderReports(selectedRole);
+
+      }
+
+
+
+      function renderReports(filterRole) {
+
+        reportsBody.innerHTML = "";
+
+
+
+        const filteredReports = reports.filter(report => {
+
+          if (!filterRole || filterRole === "Admin") {
+
+            return true;
+
+          }
+
+          return report.role === filterRole;
+
+        });
+
+
+
+        filteredReports.forEach((report, index) => {
+
+          const tr = document.createElement("tr");
+
+
+
+          const statusClass =
+
+            report.status === "Open"
+
+              ? "status-open"
+
+              : report.status === "Resolved"
+
+              ? "status-resolved"
+
+              : "status-review";
+
+
+
+          tr.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>${report.role}</td>
+
+            <td>${report.location}</td>
+
+            <td>${report.category}</td>
+
+            <td>
+
+              <span class="status-chip ${statusClass}">
+
+                ${report.status}
+
+              </span>
+
+            </td>
+
+            <td>${report.time}</td>
+
+          `;
+
+          reportsBody.appendChild(tr);
+
+        });
+
+
+
+        updateStats();
+
+      }
+
+
+
+      function updateStats() {
+
+        const total = reports.length;
+
+        const open = reports.filter(r => r.status === "Open").length;
+
+        const resolved = reports.filter(r => r.status === "Resolved").length;
+
+
+
+        statTotal.textContent = total;
+
+        statOpen.textContent = open;
+
+        statResolved.textContent = resolved;
+
+      }
+
+
+
+      function clearForm() {
+
+        reportForm.reset();
+
+        // Reset urgency to Normal
+
+        const urgencySelect = document.getElementById("reportUrgency");
+
+        if (urgencySelect) urgencySelect.value = "Normal";
+
+      }
+
+
+
+      function showFlash() {
+
+        flashMessage.style.display = "block";
+
+        setTimeout(() => {
+
+          flashMessage.style.display = "none";
+
+        }, 1800);
+
+      }
+
+
+
+      reportForm.addEventListener("submit", (e) => {
+
+        e.preventDefault();
+
+
+
+        const reporterRole = document.getElementById("reporterRole").value;
+
+        const location = document.getElementById("location").value.trim();
+
+        const category = document.getElementById("category").value;
+
+        const description = document.getElementById("description").value.trim();
+
+        const urgency = document.getElementById("reportUrgency").value;
+
+
+
+        if (!location || !description) {
+
+          alert("Please fill both location and description.");
+
+          return;
+
+        }
+
+
+
+        const now = new Date();
+
+        const timeString = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+
+
+        const newReport = {
+
+          id: reports.length + 1,
+
+          role: reporterRole,
+
+          location,
+
+          category,
+
+          status: "Open",
+
+          time: timeString,
+
+          urgency
+
+        };
+
+
+
+        reports.unshift(newReport); // add to top
+
+        renderReports(roleSelect.value);
+
+        clearForm();
+
+        showFlash();
+
+      });
+
+
+
+      clearFormBtn.addEventListener("click", () => {
+
+        clearForm();
+
+      });
+
+
+
+      // Discussion rendering
+
+      function renderDiscussions() {
+
+        discussionList.innerHTML = "";
+
+        discussions.forEach((item) => {
+
+          const div = document.createElement("div");
+
+          div.className = "discussion-item";
+
+          div.innerHTML = `
+
+            <strong>${item.author}</strong>
+
+            <span>${item.time}</span>
+
+            <p>${item.text}</p>
+
+          `;
+
+          discussionList.appendChild(div);
+
+        });
+
+      }
+
+
+
+      discussionForm.addEventListener("submit", (e) => {
+
+        e.preventDefault();
+
+        const text = discussionText.value.trim();
+
+        if (!text) return;
+
+
+
+        const now = new Date();
+
+        const timeString = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+
+
+        discussions.unshift({
+
+          author: roleSelect.value,
+
+          time: "Today • " + timeString,
+
+          text
+
+        });
+
+
+
+        discussionText.value = "";
+
+        renderDiscussions();
+
+      });
+
+
+
+      roleSelect.addEventListener("change", updateRoleUI);
+
+
+
+      // Initial load
+
+      renderReports("Admin");
+
+      renderDiscussions();
+
+      updateRoleUI();
+
+    });
+
+  </script>
+
+</body>
+
+</html>
